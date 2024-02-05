@@ -1,6 +1,6 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Traits;
+namespace CollectiveThinking\LaravelSeed\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;

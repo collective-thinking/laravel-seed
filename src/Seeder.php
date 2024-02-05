@@ -1,6 +1,6 @@
 <?php
 
-namespace Khalyomede\LaravelSeed;
+namespace CollectiveThinking\LaravelSeed;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

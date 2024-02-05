@@ -1,12 +1,12 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Commands;
+namespace CollectiveThinking\LaravelSeed\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedMake extends Command
 {

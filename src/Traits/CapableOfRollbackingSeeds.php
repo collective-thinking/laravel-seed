@@ -1,7 +1,8 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Traits;
+namespace CollectiveThinking\LaravelSeed\Traits;
 
+use CollectiveThinking\LaravelSeed\MigrationSeederInterface;
 use Illuminate\Support\Facades\Storage;
 
 trait CapableOfRollbackingSeeds
@@ -28,6 +29,7 @@ trait CapableOfRollbackingSeeds
 
         $class = $this->getSeederClassName();
 
+        /** @var MigrationSeederInterface $instance */
         $instance = new $class();
 
         $instance->down();

@@ -1,13 +1,13 @@
 <?php
 
-namespace Khalyomede\LaravelSeed;
+namespace CollectiveThinking\LaravelSeed;
 
 use Illuminate\Support\ServiceProvider;
-use Khalyomede\LaravelSeed\Commands\Seed;
-use Khalyomede\LaravelSeed\Commands\SeedMake;
-use Khalyomede\LaravelSeed\Commands\SeedReset;
-use Khalyomede\LaravelSeed\Commands\SeedRollback;
-use Khalyomede\LaravelSeed\Commands\SeedStatus;
+use CollectiveThinking\LaravelSeed\Commands\Seed;
+use CollectiveThinking\LaravelSeed\Commands\SeedMake;
+use CollectiveThinking\LaravelSeed\Commands\SeedReset;
+use CollectiveThinking\LaravelSeed\Commands\SeedRollback;
+use CollectiveThinking\LaravelSeed\Commands\SeedStatus;
 
 class LaravelSeedServiceProvider extends ServiceProvider
 {

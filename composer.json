@@ -1,5 +1,5 @@
 {
-    "name": "khalyomede/laravel-seed",
+    "name": "collective-thinking/laravel-seed",
     "description": "Run your seeds like you run your migrations.",
     "type": "library",
     "license": "MIT",
@@ -7,6 +7,10 @@
         {
             "name": "Khalyomede",
             "email": "khalyomede@gmail.com"
+        },
+        {
+            "name": "Collective Thinking",
+            "email": "tech@collective-thinking.com"
         }
     ],
     "keywords": [
@@ -17,18 +21,18 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.3.0",
         "jawira/case-converter": "3.*",
-        "laravel/framework": "5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*|8.*"
+        "laravel/framework": "8.*"
     },
     "autoload": {
         "psr-4": {
-            "Khalyomede\\LaravelSeed\\": "src"
+            "CollectiveThinking\\LaravelSeed\\": "src"
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "3.0.2",
-        "phpstan/phpstan": "0.12.96"
+        "friendsofphp/php-cs-fixer": "3.4.0",
+        "phpstan/phpstan": "1.10.57"
     },
     "scripts": {
         "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",

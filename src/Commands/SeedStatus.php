@@ -1,11 +1,11 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Commands;
+namespace CollectiveThinking\LaravelSeed\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Khalyomede\LaravelSeed\Seeder;
-use Khalyomede\LaravelSeed\Traits\CapableOfLookingForSeeds;
+use CollectiveThinking\LaravelSeed\Seeder;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfLookingForSeeds;
 
 class SeedStatus extends Command
 {

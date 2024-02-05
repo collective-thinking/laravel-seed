@@ -1,14 +1,15 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Commands;
+namespace CollectiveThinking\LaravelSeed\Commands;
 
+use CollectiveThinking\LaravelSeed\MigrationSeederInterface;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Jawira\CaseConverter\Convert;
-use Khalyomede\LaravelSeed\Seeder;
-use Khalyomede\LaravelSeed\Traits\CapableOfLookingForSeeds;
-use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
+use CollectiveThinking\LaravelSeed\Seeder;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfLookingForSeeds;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use RuntimeException;
 
 class Seed extends Command
@@ -100,6 +101,7 @@ class Seed extends Command
 
         $className = $this->getSeederClassName();
 
+        /** @var MigrationSeederInterface $instance */
         $instance = new $className();
 
         $instance->up();

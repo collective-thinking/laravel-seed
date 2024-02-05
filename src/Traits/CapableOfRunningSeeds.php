@@ -1,6 +1,6 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Traits;
+namespace CollectiveThinking\LaravelSeed\Traits;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

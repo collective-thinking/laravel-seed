@@ -1,12 +1,12 @@
 <?php
 
-namespace Khalyomede\LaravelSeed\Commands;
+namespace CollectiveThinking\LaravelSeed\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Khalyomede\LaravelSeed\Seeder;
-use Khalyomede\LaravelSeed\Traits\CapableOfRollbackingSeeds;
-use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
+use CollectiveThinking\LaravelSeed\Seeder;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfRollbackingSeeds;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedReset extends Command
 {
