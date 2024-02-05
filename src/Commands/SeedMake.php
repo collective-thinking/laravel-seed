@@ -3,10 +3,10 @@
 namespace CollectiveThinking\LaravelSeed\Commands;
 
 use Carbon\Carbon;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedMake extends Command
 {

@@ -2,12 +2,12 @@
 
 namespace CollectiveThinking\LaravelSeed;
 
-use Illuminate\Support\ServiceProvider;
 use CollectiveThinking\LaravelSeed\Commands\Seed;
 use CollectiveThinking\LaravelSeed\Commands\SeedMake;
 use CollectiveThinking\LaravelSeed\Commands\SeedReset;
 use CollectiveThinking\LaravelSeed\Commands\SeedRollback;
 use CollectiveThinking\LaravelSeed\Commands\SeedStatus;
+use Illuminate\Support\ServiceProvider;
 
 class LaravelSeedServiceProvider extends ServiceProvider
 {

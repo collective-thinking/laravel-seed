@@ -3,13 +3,13 @@
 namespace CollectiveThinking\LaravelSeed\Commands;
 
 use CollectiveThinking\LaravelSeed\MigrationSeederInterface;
+use CollectiveThinking\LaravelSeed\Seeder;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfLookingForSeeds;
+use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Jawira\CaseConverter\Convert;
-use CollectiveThinking\LaravelSeed\Seeder;
-use CollectiveThinking\LaravelSeed\Traits\CapableOfLookingForSeeds;
-use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use RuntimeException;
 
 class Seed extends Command

@@ -2,10 +2,10 @@
 
 namespace CollectiveThinking\LaravelSeed\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use CollectiveThinking\LaravelSeed\Seeder;
 use CollectiveThinking\LaravelSeed\Traits\CapableOfLookingForSeeds;
+use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 
 class SeedStatus extends Command
 {
