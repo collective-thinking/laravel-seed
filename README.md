@@ -43,7 +43,7 @@ For older Laravel versions, you will need to register the service provider in th
 ```php
 'providers' => [
   // ...
-  Khalyomede\LaravelSeed\LaravelSeedServiceProvider::class,
+  CollectiveThinking\LaravelSeed\LaravelSeedServiceProvider::class,
 ]
 ```
 
