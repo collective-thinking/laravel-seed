@@ -14,15 +14,7 @@ class SeedStatus extends Command
     protected $signature = "seed:status";
     protected $description = "Create a new seeder.";
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
         $seedFileNamesAndStatuses = $this->getSeedFileNamesAndStatuses();
 
@@ -32,7 +24,7 @@ class SeedStatus extends Command
     }
 
     /**
-     * @return Collection<array>
+     * @return Collection<int, array<string, string>>
      */
     private function getSeedFileNamesAndStatuses(): Collection
     {
@@ -60,13 +52,10 @@ class SeedStatus extends Command
     }
 
     /**
-     * @return Collection<string>
+     * @return Collection<int, string>
      */
     private function getSeedFileNamesInTable(): Collection
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::pluck()
-         */
-        return Seeder::pluck("seeder");
+        return Seeder::query()->pluck("seeder");
     }
 }

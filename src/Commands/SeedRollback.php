@@ -16,11 +16,6 @@ class SeedRollback extends Command
     protected $signature = "seed:rollback {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
     protected $description = "Rollback all the seeds.";
 
-    /**
-     * @var string
-     */
-    private $seedFileName;
-
     public function __construct()
     {
         parent::__construct();
@@ -28,10 +23,7 @@ class SeedRollback extends Command
         $this->seedFileName = "";
     }
 
-    /**
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
         $seedFileNames = $this->getSeedFileNamesInReverseOrder();
         $numberOfRollbackedSeeds = 0;
@@ -66,17 +58,14 @@ class SeedRollback extends Command
     }
 
     /**
-     * @return Collection<string>
+     * @return Collection<int, string>
      */
     private function getSeedFileNamesInReverseOrder(): Collection
     {
         return $this->getSeedFileNamesMatchingBatchNumber($this->getLastSeedBatchNumber());
     }
 
-    /**
-     * @return void
-     */
-    private function forgetSeed()
+    private function forgetSeed(): void
     {
         Seeder::forget($this->seedFileName);
     }
@@ -87,24 +76,21 @@ class SeedRollback extends Command
     }
 
     /**
-     * @return Collection<string>
+     * @return Collection<int, string>
      */
     private function getSeedFileNamesMatchingBatchNumber(int $batchNumber): Collection
     {
         /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::matchingBatchNumber()
+         * @phpstan-ignore-next-line Call to an undefined static method CollectiveThinking\LaravelSeed\Seeder::matchingBatchNumber()
          */
-        return Seeder::matchingBatchNumber($batchNumber)
+        return Seeder::query()->matchingBatchNumber($batchNumber)
             ->inReverseOrder()
             ->pluck("seeder");
     }
 
     private function getLastSeederFileName(): string
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::latest()
-         */
-        $lastSeeder = Seeder::latest("id")->first();
+        $lastSeeder = Seeder::query()->latest("id")->first();
 
         if (!($lastSeeder instanceof Seeder)) {
             $this->error("No seeder ran yet, nothing to rollback.");

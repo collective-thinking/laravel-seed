@@ -10,10 +10,7 @@ use RuntimeException;
 
 trait CapableOfRunningSeeds
 {
-    /**
-     * @var string
-     */
-    private $seedFileName;
+    private string $seedFileName;
 
     private function getAbsoluteSeederFilePath(): string
     {
@@ -36,13 +33,10 @@ trait CapableOfRunningSeeds
         return Str::plural((new Convert($matches[1]))->toPascal());
     }
 
-    /**
-     * @return void
-     */
-    private function createSeedersTableIfItDoesNotExistYet()
+    private function createSeedersTableIfItDoesNotExistYet(): void
     {
         if (!Schema::hasTable("seeders")) {
-            Schema::create("seeders", function (Blueprint $table) {
+            Schema::create("seeders", static function (Blueprint $table) {
                 $table->increments("id");
                 $table->string("seeder");
                 $table->bigInteger("batch");

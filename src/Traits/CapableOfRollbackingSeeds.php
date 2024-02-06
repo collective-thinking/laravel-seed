@@ -9,10 +9,7 @@ trait CapableOfRollbackingSeeds
 {
     use CapableOfRunningSeeds;
 
-    /**
-     * @return void
-     */
-    private function rollbackSeed()
+    private function rollbackSeed(): void
     {
         if (!$this->hasSeederInDisk() && $this->option("ignore-deleted") === null) {
             $this->line("\n");

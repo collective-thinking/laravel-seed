@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 trait CapableOfLookingForSeeds
 {
     /**
-     * @return Collection<string>
+     * @return Collection<int, string>
      */
     private function getSeedFilePaths(): Collection
     {
@@ -16,7 +16,7 @@ trait CapableOfLookingForSeeds
     }
 
     /**
-     * @return Collection<string>
+     * @return Collection<int, string>
      */
     private function getSeedFileNames(): Collection
     {

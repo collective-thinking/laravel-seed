@@ -16,11 +16,6 @@ class SeedReset extends Command
     protected $signature = "seed:reset {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
     protected $description = "Rollback all the seeds.";
 
-    /**
-     * @var string
-     */
-    private $seedFileName;
-
     public function __construct()
     {
         parent::__construct();
@@ -28,10 +23,7 @@ class SeedReset extends Command
         $this->seedFileName = "";
     }
 
-    /**
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
         $seedFileNames = $this->getSeedsFileNamesInReverseOrder();
         $numberOfSeedsRollbacked = 0;
@@ -66,20 +58,17 @@ class SeedReset extends Command
     }
 
     /**
-     * @return Collection<string>
+     * @return Collection<int, string>
      */
     private function getSeedsFileNamesInReverseOrder(): Collection
     {
         /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::inReverseOrder()
+         * @phpstan-ignore-next-line Call to an undefined method CollectiveThinking\LaravelSeed\Seeder::inReverseOrder()
          */
-        return Seeder::inReverseOrder()->pluck("seeder");
+        return Seeder::query()->inReverseOrder()->pluck("seeder");
     }
 
-    /**
-     * @return void
-     */
-    private function forgetSeed()
+    private function forgetSeed(): void
     {
         Seeder::forget($this->seedFileName);
     }

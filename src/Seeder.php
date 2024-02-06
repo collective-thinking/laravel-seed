@@ -23,7 +23,7 @@ class Seeder extends Model
         return $query->where("batch", $number);
     }
 
-    public function scopeInReverseOrder(Builder $query): QueryBuilder
+    public function scopeInReverseOrder(Builder $query): Builder|QueryBuilder
     {
         return $query->orderBy("seeder", "desc");
     }
@@ -31,27 +31,21 @@ class Seeder extends Model
     public static function getNextBatchNumber(): int
     {
         /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::max()
+         * @phpstan-ignore-next-line Call to an undefined static method CollectiveThinking\LaravelSeed\Seeder::max()
          */
         return self::max("batch") + 1;
     }
 
-    /**
-     * @return void
-     */
-    public static function forget(string $seeder)
+    public static function forget(string $seeder): void
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::where()
-         */
-        self::where("seeder", $seeder)->delete();
+        self::query()->where("seeder", $seeder)->delete();
     }
 
     public static function getBatchNumberFromSeederFileName(string $fileName): int
     {
         /**
-         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::matchingSeederFileName()
+         * @phpstan-ignore-next-line Call to an undefined static method CollectiveThinking\LaravelSeed\Seeder::matchingSeederFileName()
          */
-        return self::matchingSeederFileName($fileName)->firstOrFail()->batch;
+        return self::query()->matchingSeederFileName($fileName)->firstOrFail()->batch;
     }
 }
