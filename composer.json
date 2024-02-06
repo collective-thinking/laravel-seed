@@ -21,9 +21,9 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.3.0",
+        "php": ">=8.0.0",
         "jawira/case-converter": "3.*",
-        "laravel/framework": "8.*"
+        "laravel/framework": "8.*|9.*"
     },
     "autoload": {
         "psr-4": {
@@ -38,12 +38,12 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "3.4.0",
+        "friendsofphp/php-cs-fixer": "3.49.0",
         "phpstan/phpstan": "1.10.57"
     },
     "scripts": {
         "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
         "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
-        "analyse": "phpstan analyse"
+        "analyze": "phpstan analyze"
     }
 }
