@@ -2,7 +2,7 @@
 
 Run your seeds like you run your migrations.
 
-[![Packagist License](https://img.shields.io/packagist/l/khalyomede/laravel-seed)](https://github.com/khalyomede/laravel-seed/blob/master/LICENSE) [![Packagist Version](https://img.shields.io/packagist/v/khalyomede/laravel-seed)](https://packagist.org/packages/khalyomede/laravel-seed) [![Maintainability](https://api.codeclimate.com/v1/badges/82d400bf9bdd07053f7b/maintainability)](https://codeclimate.com/github/khalyomede/laravel-seed/maintainability)
+[![Packagist License](https://img.shields.io/packagist/l/collective-thinking/laravel-seed)](https://github.com/collective-thinking/laravel-seed/blob/master/LICENSE) [![Packagist Version](https://img.shields.io/packagist/v/collective-thinking/laravel-seed)](https://packagist.org/packages/collective-thinking/laravel-seed) [![Maintainability](https://api.codeclimate.com/v1/badges/e7a9df4178c3f3863ecd/maintainability)](https://codeclimate.com/github/collective-thinking/laravel-seed/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e7a9df4178c3f3863ecd/test_coverage)](https://codeclimate.com/github/collective-thinking/laravel-seed/test_coverage)
 
 ![laravel-seed-showcase-2](https://user-images.githubusercontent.com/15908747/88453817-cda1a700-ce6a-11ea-86b5-923d6aeb98ee.gif)
 
@@ -27,8 +27,8 @@ My use case for this package is to populate my apps in production, in order to a
 
 ## Prerequisites
 
-- PHP >= 7.0.0
-- Laravel >= 5.5.0
+- PHP >= 8.1.0
+- Laravel >= 8.0.0
 
 ## Installation
 

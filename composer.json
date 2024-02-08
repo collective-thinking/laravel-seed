@@ -37,18 +37,20 @@
         }
     },
     "require-dev": {
-        "laravel/pint": "1.13.10",
-        "phpstan/phpstan": "1.10.57",
+        "laravel/pint": "^1.13.10",
+        "phpstan/phpstan": "^1.10.57",
         "phpunit/phpunit": "^10.5.0",
-        "orchestra/testbench": "8.x",
-        "nunomaduro/collision": "7.x",
-        "larastan/larastan": "^2.0"
+        "phpunit/php-code-coverage": "^10.1.0",
+        "orchestra/testbench": "^8.21.1",
+        "nunomaduro/collision": "^7.10.0",
+        "larastan/larastan": "^2.8.1"
     },
     "scripts": {
         "lint": "pint --test",
         "format": "pint",
         "analyze": "phpstan analyze",
-        "test": "testbench package:test"
+        "test": "testbench package:test",
+        "test-coverage": "phpunit --coverage-clover build/logs/clover.xml"
     },
     "autoload-dev": {
         "psr-4": {
