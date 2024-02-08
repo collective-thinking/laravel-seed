@@ -12,7 +12,10 @@ trait CapableOfLookingForSeeds
      */
     private function getSeedFilePaths(): Collection
     {
-        return collect(Storage::disk("seeders")->files());
+        return collect(Storage::disk('seeders')->files())
+            ->filter(function ($path) {
+                return $path[0] !== 1;
+            });
     }
 
     /**
@@ -21,7 +24,7 @@ trait CapableOfLookingForSeeds
     private function getSeedFileNames(): Collection
     {
         return $this->getSeedFilePaths()->map(function ($path) {
-            return preg_replace("/\.php$/", "", $path);
+            return preg_replace("/\.php$/", '', $path);
         });
     }
 }

@@ -2,23 +2,21 @@
 
 namespace CollectiveThinking\LaravelSeed\Commands;
 
-use CollectiveThinking\LaravelSeed\MigrationSeederInterface;
 use CollectiveThinking\LaravelSeed\Seeder;
 use CollectiveThinking\LaravelSeed\Traits\CapableOfLookingForSeeds;
 use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use Jawira\CaseConverter\Convert;
-use RuntimeException;
+use Illuminate\Support\Facades\Storage;
 
 class Seed extends Command
 {
     use CapableOfLookingForSeeds;
     use CapableOfRunningSeeds;
 
-    protected $signature = "seed";
-    protected $description = "Runs the seeders that have not been run yet.";
+    protected $signature = 'seed';
+
+    protected $description = 'Runs the seeders that have not been run yet.';
 
     private int $batchNumber;
 
@@ -26,7 +24,7 @@ class Seed extends Command
     {
         parent::__construct();
 
-        $this->seedFileName = "";
+        $this->seedFileName = '';
         $this->batchNumber = 0;
     }
 
@@ -40,8 +38,6 @@ class Seed extends Command
         $bar = $this->output->createProgressBar(count($seedFileNames));
 
         if ($seedFileNames->count() > 0) {
-            $this->createSeedersTableIfItDoesNotExistYet();
-
             $bar->start();
         }
 
@@ -52,7 +48,7 @@ class Seed extends Command
             $this->rememberThatSeederHaveBeenRun();
 
             $seeds[] = [
-                "file" => $this->seedFileName,
+                'file' => $this->seedFileName,
             ];
             $numberOfSeedsRan++;
             $bar->advance();
@@ -63,8 +59,8 @@ class Seed extends Command
         }
 
         $this->line("\n");
-        $this->table(["file"], $seeds);
-        $this->line("");
+        $this->table(['file'], $seeds);
+        $this->line('');
         $this->info("{$numberOfSeedsRan} seed(s) ran.");
     }
 
@@ -73,7 +69,7 @@ class Seed extends Command
      */
     private function getSeedFiles(): Collection
     {
-        $seeders = Seeder::query()->pluck("seeder");
+        $seeders = Seeder::query()->pluck('seeder');
 
         return $this->getSeedFileNames()->diff($seeders);
     }
@@ -84,38 +80,22 @@ class Seed extends Command
 
         $className = $this->getSeederClassName();
 
-        /** @var MigrationSeederInterface $instance */
         $instance = new $className();
 
+        // @phpstan-ignore-next-line
         $instance->up();
-    }
-
-    private function getSeederClassName(): string
-    {
-        $matches = [];
-        $succeeded = preg_match("/\d+_\d+_\d+_\d+_([\w_]+)$/", $this->seedFileName, $matches);
-
-        if ($succeeded === false) {
-            throw new RuntimeException("An error occured while trying to get the name of the seeder class");
-        }
-
-        if (count($matches) !== 2) {
-            throw new RuntimeException("An error occured while trying to get the name of the seeder class");
-        }
-
-        return Str::plural((new Convert($matches[1]))->toPascal());
     }
 
     private function getAbsoluteSeederFilePath(): string
     {
-        return database_path("seeders/{$this->seedFileName}.php");
+        return Storage::disk('seeders')->path("{$this->seedFileName}.php");
     }
 
     private function rememberThatSeederHaveBeenRun(): void
     {
         Seeder::query()->insert([
-            "seeder" => $this->seedFileName,
-            "batch" => $this->batchNumber,
+            'seeder' => $this->seedFileName,
+            'batch' => $this->batchNumber,
         ]);
     }
 }

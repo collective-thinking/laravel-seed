@@ -11,15 +11,16 @@ class SeedStatus extends Command
 {
     use CapableOfLookingForSeeds;
 
-    protected $signature = "seed:status";
-    protected $description = "Create a new seeder.";
+    protected $signature = 'seed:status';
+
+    protected $description = 'Show status of seeders.';
 
     public function handle(): void
     {
         $seedFileNamesAndStatuses = $this->getSeedFileNamesAndStatuses();
 
-        $this->table(["file", "status"], $seedFileNamesAndStatuses);
-        $this->line("");
+        $this->table(['file', 'status'], $seedFileNamesAndStatuses);
+        $this->line('');
         $this->line("{$seedFileNamesAndStatuses->count()} row(s) displayed.");
     }
 
@@ -34,16 +35,16 @@ class SeedStatus extends Command
 
         foreach ($seedFileNamesOnDisk as $seedFileNameOnDisk) {
             $seedFileNamesAndStatuses->push([
-                "file" => $seedFileNameOnDisk,
-                "status" => $seedFileNamesInTable->contains($seedFileNameOnDisk) ? "ran" : "not ran",
+                'file' => $seedFileNameOnDisk,
+                'status' => $seedFileNamesInTable->contains($seedFileNameOnDisk) ? 'ran' : 'not ran',
             ]);
         }
 
         foreach ($seedFileNamesInTable as $seedFileNameOnTable) {
-            if (!$seedFileNamesOnDisk->contains($seedFileNameOnTable)) {
+            if (! $seedFileNamesOnDisk->contains($seedFileNameOnTable)) {
                 $seedFileNamesAndStatuses->push([
-                    "file" => $seedFileNameOnTable,
-                    "status" => "deleted from disk",
+                    'file' => $seedFileNameOnTable,
+                    'status' => 'deleted from disk',
                 ]);
             }
         }
@@ -56,6 +57,6 @@ class SeedStatus extends Command
      */
     private function getSeedFileNamesInTable(): Collection
     {
-        return Seeder::query()->pluck("seeder");
+        return Seeder::query()->pluck('seeder');
     }
 }

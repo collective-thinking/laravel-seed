@@ -4,23 +4,22 @@ namespace CollectiveThinking\LaravelSeed\Commands;
 
 use CollectiveThinking\LaravelSeed\Seeder;
 use CollectiveThinking\LaravelSeed\Traits\CapableOfRollbackingSeeds;
-use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 
 class SeedReset extends Command
 {
     use CapableOfRollbackingSeeds;
-    use CapableOfRunningSeeds;
 
     protected $signature = "seed:reset {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
-    protected $description = "Rollback all the seeds.";
+
+    protected $description = 'Rollback all the seeds.';
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->seedFileName = "";
+        $this->seedFileName = '';
     }
 
     public function handle(): void
@@ -41,7 +40,7 @@ class SeedReset extends Command
             $this->forgetSeed();
 
             $seeds[] = [
-                "file" => $this->seedFileName,
+                'file' => $this->seedFileName,
             ];
             $numberOfSeedsRollbacked++;
             $bar->advance();
@@ -52,8 +51,8 @@ class SeedReset extends Command
         }
 
         $this->line("\n");
-        $this->table(["file"], $seeds);
-        $this->line("");
+        $this->table(['file'], $seeds);
+        $this->line('');
         $this->info("$numberOfSeedsRollbacked seed(s) rollbacked.");
     }
 
@@ -62,10 +61,7 @@ class SeedReset extends Command
      */
     private function getSeedsFileNamesInReverseOrder(): Collection
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined method CollectiveThinking\LaravelSeed\Seeder::inReverseOrder()
-         */
-        return Seeder::query()->inReverseOrder()->pluck("seeder");
+        return Seeder::query()->inReverseOrder()->pluck('seeder');
     }
 
     private function forgetSeed(): void

@@ -2,7 +2,6 @@
 
 namespace CollectiveThinking\LaravelSeed\Traits;
 
-use CollectiveThinking\LaravelSeed\MigrationSeederInterface;
 use Illuminate\Support\Facades\Storage;
 
 trait CapableOfRollbackingSeeds
@@ -11,29 +10,29 @@ trait CapableOfRollbackingSeeds
 
     private function rollbackSeed(): void
     {
-        if (!$this->hasSeederInDisk() && $this->option("ignore-deleted") === null) {
+        if (! $this->hasSeederInDisk() && ! $this->option('ignore-deleted')) {
             $this->line("\n");
             $this->error("Seeder {$this->seedFileName} does not exist in disk.  Use --ignore-deleted to skip this error message.");
 
             exit(1);
         }
 
-        if (!$this->hasSeederInDisk() && $this->option("ignore-deleted") !== null) {
+        if (! $this->hasSeederInDisk() && $this->option('ignore-deleted') !== null) {
             return;
         }
 
-        include $this->getAbsoluteSeederFilePath();
+        include_once $this->getAbsoluteSeederFilePath();
 
         $class = $this->getSeederClassName();
 
-        /** @var MigrationSeederInterface $instance */
         $instance = new $class();
 
+        // @phpstan-ignore-next-line
         $instance->down();
     }
 
     private function hasSeederInDisk(): bool
     {
-        return Storage::disk("seeders")->exists("{$this->seedFileName}.php");
+        return Storage::disk('seeders')->exists("{$this->seedFileName}.php");
     }
 }

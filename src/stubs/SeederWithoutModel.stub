@@ -1,6 +1,6 @@
 <?php
 
-class {{ class }} implements MigrationSeederInterface
+class {{ class }}
 {
     public function up()
     {

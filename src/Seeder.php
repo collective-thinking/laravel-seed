@@ -15,37 +15,31 @@ class Seeder extends Model
 {
     public function scopeMatchingSeederFileName(Builder $query, string $fileName): Builder
     {
-        return $query->where("seeder", $fileName);
+        return $query->where('seeder', $fileName);
     }
 
     public function scopeMatchingBatchNumber(Builder $query, int $number): Builder
     {
-        return $query->where("batch", $number);
+        return $query->where('batch', $number);
     }
 
     public function scopeInReverseOrder(Builder $query): Builder|QueryBuilder
     {
-        return $query->orderBy("seeder", "desc");
+        return $query->orderBy('seeder', 'desc');
     }
 
     public static function getNextBatchNumber(): int
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined static method CollectiveThinking\LaravelSeed\Seeder::max()
-         */
-        return self::max("batch") + 1;
+        return self::max('batch') + 1;
     }
 
     public static function forget(string $seeder): void
     {
-        self::query()->where("seeder", $seeder)->delete();
+        self::query()->where('seeder', $seeder)->delete();
     }
 
     public static function getBatchNumberFromSeederFileName(string $fileName): int
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined static method CollectiveThinking\LaravelSeed\Seeder::matchingSeederFileName()
-         */
         return self::query()->matchingSeederFileName($fileName)->firstOrFail()->batch;
     }
 }

@@ -22,7 +22,6 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.0.0",
-        "jawira/case-converter": "3.*",
         "laravel/framework": "8.*|9.*"
     },
     "autoload": {
@@ -38,12 +37,22 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "3.49.0",
-        "phpstan/phpstan": "1.10.57"
+        "laravel/pint": "1.5.0",
+        "phpstan/phpstan": "1.10.57",
+        "phpunit/phpunit": "9.6.*",
+        "orchestra/testbench": "7.x",
+        "nunomaduro/collision": "6.x",
+        "larastan/larastan": "^2.0"
     },
     "scripts": {
-        "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
-        "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
-        "analyze": "phpstan analyze"
+        "lint": "pint --test",
+        "format": "pint",
+        "analyze": "phpstan analyze",
+        "test": "testbench package:test"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CollectiveThinking\\LaravelSeed\\Tests\\": "tests/"
+        }
     }
 }

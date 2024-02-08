@@ -14,13 +14,14 @@ class SeedRollback extends Command
     use CapableOfRunningSeeds;
 
     protected $signature = "seed:rollback {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
-    protected $description = "Rollback all the seeds.";
+
+    protected $description = 'Rollback all the seeds.';
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->seedFileName = "";
+        $this->seedFileName = '';
     }
 
     public function handle(): void
@@ -41,7 +42,7 @@ class SeedRollback extends Command
             $this->forgetSeed();
 
             $seedsRollbacked[] = [
-                "file" => $seedFileName,
+                'file' => $seedFileName,
             ];
             $numberOfRollbackedSeeds++;
             $bar->advance();
@@ -52,8 +53,8 @@ class SeedRollback extends Command
         }
 
         $this->line("\n");
-        $this->table(["file"], $seedsRollbacked);
-        $this->line("");
+        $this->table(['file'], $seedsRollbacked);
+        $this->line('');
         $this->line("$numberOfRollbackedSeeds seed(s) rollbacked.");
     }
 
@@ -80,20 +81,17 @@ class SeedRollback extends Command
      */
     private function getSeedFileNamesMatchingBatchNumber(int $batchNumber): Collection
     {
-        /**
-         * @phpstan-ignore-next-line Call to an undefined static method CollectiveThinking\LaravelSeed\Seeder::matchingBatchNumber()
-         */
         return Seeder::query()->matchingBatchNumber($batchNumber)
             ->inReverseOrder()
-            ->pluck("seeder");
+            ->pluck('seeder');
     }
 
     private function getLastSeederFileName(): string
     {
-        $lastSeeder = Seeder::query()->latest("id")->first();
+        $lastSeeder = Seeder::query()->latest('id')->first();
 
-        if (!($lastSeeder instanceof Seeder)) {
-            $this->error("No seeder ran yet, nothing to rollback.");
+        if (! ($lastSeeder instanceof Seeder)) {
+            $this->error('No seeder ran yet, nothing to rollback.');
 
             exit(1);
         }

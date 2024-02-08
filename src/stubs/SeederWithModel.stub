@@ -1,9 +1,8 @@
 <?php
 
 use {{ modelNamespace }};
-use CollectiveThinking\LaravelSeed\MigrationSeederInterface;
 
-class {{ class }} implements MigrationSeederInterface
+class {{ class }}
 {
     public function up()
     {

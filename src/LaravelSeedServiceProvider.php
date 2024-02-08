@@ -11,33 +11,22 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelSeedServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
         if ($this->app->runningInConsole()) {
             $this->registerCommands();
             $this->registerDisks();
         }
     }
 
-    /**
-     * @return void
-     */
-    private function registerCommands()
+    private function registerCommands(): void
     {
         $this->commands([
             Seed::class,
@@ -48,14 +37,12 @@ class LaravelSeedServiceProvider extends ServiceProvider
         ]);
     }
 
-    /**
-     * @return void
-     */
-    private function registerDisks()
+    private function registerDisks(): void
     {
-        app()->config["filesystems.disks.seeders"] = [
-            "driver" => "local",
-            "root" => database_path("seeders"),
-        ];
+        config('filesystems.disks.seeders', [
+            'driver' => 'local',
+            'root' => database_path('seeders'),
+            'throw' => false,
+        ]);
     }
 }

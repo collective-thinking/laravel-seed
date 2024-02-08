@@ -2,11 +2,12 @@
 
 namespace CollectiveThinking\LaravelSeed\Traits;
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use function array_slice;
+use function class_exists;
+use function explode;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Jawira\CaseConverter\Convert;
-use RuntimeException;
+use function implode;
 
 trait CapableOfRunningSeeds
 {
@@ -14,33 +15,17 @@ trait CapableOfRunningSeeds
 
     private function getAbsoluteSeederFilePath(): string
     {
-        return database_path("seeders/{$this->seedFileName}.php");
+        return Storage::disk('seeders')->path("{$this->seedFileName}.php");
     }
 
     private function getSeederClassName(): string
     {
-        $matches = [];
-        $succeeded = preg_match("/\d+_\d+_\d+_\d+_([\w_]+)$/", $this->seedFileName, $matches);
+        $className = Str::studly(implode('_', array_slice(explode('_', $this->seedFileName), 4)));
 
-        if ($succeeded === false) {
-            throw new RuntimeException("An error occured while trying to get the name of the seeder class");
+        if (class_exists($className)) {
+            return $className;
         }
 
-        if (count($matches) !== 2) {
-            throw new RuntimeException("An error occured while trying to get the name of the seeder class");
-        }
-
-        return Str::plural((new Convert($matches[1]))->toPascal());
-    }
-
-    private function createSeedersTableIfItDoesNotExistYet(): void
-    {
-        if (!Schema::hasTable("seeders")) {
-            Schema::create("seeders", static function (Blueprint $table) {
-                $table->increments("id");
-                $table->string("seeder");
-                $table->bigInteger("batch");
-            });
-        }
+        return Str::plural($className);
     }
 }
