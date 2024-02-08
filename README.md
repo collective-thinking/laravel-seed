@@ -35,7 +35,7 @@ My use case for this package is to populate my apps in production, in order to a
 In your root project folder, run this command:
 
 ```bash
-composer require khalyomede/laravel-seed
+composer require collective-thinking/laravel-seed
 ```
 
 For older Laravel versions, you will need to register the service provider in the key "Providers" of the `config/app.php` file like following:
