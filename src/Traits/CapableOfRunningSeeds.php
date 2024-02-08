@@ -2,11 +2,12 @@
 
 namespace CollectiveThinking\LaravelSeed\Traits;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 use function array_slice;
 use function class_exists;
 use function explode;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use function implode;
 
 trait CapableOfRunningSeeds

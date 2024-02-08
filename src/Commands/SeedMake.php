@@ -3,11 +3,12 @@
 namespace CollectiveThinking\LaravelSeed\Commands;
 
 use Carbon\Carbon;
-use function class_exists;
 use CollectiveThinking\LaravelSeed\Traits\CapableOfRunningSeeds;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use function class_exists;
 
 class SeedMake extends Command
 {
