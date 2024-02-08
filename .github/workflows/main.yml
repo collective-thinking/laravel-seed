@@ -39,7 +39,7 @@ jobs:
         run: docker-compose run --rm composer run test
 
   coverage:
-    needs: [ test ]
+    needs: [ lint-analyze-test ]
     name: coverage
     runs-on: ubuntu-latest
     steps:
