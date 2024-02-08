@@ -49,7 +49,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ce2820c8535ccf766ce5a4b2c55bc99d2072602373c8a38d19a981eb14000854
         with:
-          coverageCommand: docker-compose run --rm test-coverage
+          coverageCommand: docker-compose run --rm composer test-coverage
           coverageLocations: ${{github.workspace}}/build/logs/clover.xml:clover
 
 
