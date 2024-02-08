@@ -23,15 +23,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-
-      - name: Install
+      - name: Install dependencies
         run: docker-compose run --rm composer install
 
       - name: Linting
         run: docker-compose run --rm composer run lint
 
       - name: Analyzing
-        run: docker-compose run --rm composer run analyse
+        run: docker-compose run --rm composer run analyze
+
+      - name: Testing
+        run: docker-compose run --rm composer run test
