@@ -27,16 +27,16 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install dependencies
-        run: docker-compose run --rm composer install
+        run: docker compose run --rm composer install
 
       - name: Linting
-        run: docker-compose run --rm composer run lint
+        run: docker compose run --rm composer run lint
 
       - name: Analyzing
-        run: docker-compose run --rm composer run analyze
+        run: docker compose run --rm composer run analyze
 
       - name: Testing
-        run: docker-compose run --rm composer run test
+        run: docker compose run --rm composer run test
 
   coverage:
     needs: [ lint-analyze-test ]
@@ -44,12 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: docker-compose run --rm composer install
+      - run: docker compose run --rm composer install
       - uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ce2820c8535ccf766ce5a4b2c55bc99d2072602373c8a38d19a981eb14000854
         with:
-          coverageCommand: docker-compose run --rm composer test-coverage
+          coverageCommand: docker compose run --rm composer test-coverage
           prefix: /home/alpine/
           coverageLocations: ${{github.workspace}}/build/logs/clover.xml:clover
 
