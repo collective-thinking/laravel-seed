@@ -8,7 +8,7 @@ use function now;
 
 class CommandSeedMakeTest extends TestCase
 {
-    public function testSeederFileCreatedWithoutModel(): void
+    public function test_seeder_file_created_without_model(): void
     {
         $this->freezeTime();
 
@@ -18,7 +18,7 @@ class CommandSeedMakeTest extends TestCase
         $this->assertTrue($this->seederStorage->exists(now()->format('Y_m_d_His').'_test_hello_world.php'));
     }
 
-    public function testSeederFileCreatedWithModel(): void
+    public function test_seeder_file_created_with_model(): void
     {
         $this->freezeTime();
 

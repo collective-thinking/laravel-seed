@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Event;
 
 class CommandSeedRollbackTest extends TestCase
 {
-    public function testSeedersAreRollbacked(): void
+    public function test_seeders_are_rollbacked(): void
     {
         $this->storeSeedFile('0000_00_00_000000_test_seeder.php');
         $this->storeSeedFile('1111_11_11_111111_test_seeder_2.php');

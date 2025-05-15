@@ -80,7 +80,7 @@ class Seed extends Command
 
         $className = $this->getSeederClassName();
 
-        $instance = new $className();
+        $instance = new $className;
 
         // @phpstan-ignore-next-line
         $instance->up();
